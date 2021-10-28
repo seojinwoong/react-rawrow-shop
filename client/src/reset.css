@@ -51,8 +51,13 @@
           url(http://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');
    }
 
-   
-html{overflow-y:scroll;}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html{overflow-y:scroll; font-size:62.5%;}
 body{position: relative;}
 
 /* 여백 초기화 */
@@ -60,7 +65,7 @@ body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,tabl
 
 /* a 링크 초기화 */
 a {color: #111; text-decoration: none;}
-a:hover {color: #111;}
+a:hover {color: #111; text-decoration: underline;}
 
 /* 폰트 초기화 */
 body, input, textarea, select, button, table {font-family: 'Noto Sans KR', 'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif; color: #111; font-size: 13px; line-height: 1.5;}
@@ -81,7 +86,9 @@ img,fieldset {border:0 none;}
 button {border: 0;}
 
 /* 반응형 */
-video,img {width: 100%;}
+video,img {width: 100%; display: block;}
+
+i {font-style: normal;}
 
 /* clearfix */
 .clearfix{*zoom:1;}
@@ -120,9 +127,17 @@ video,img {width: 100%;}
 .shadow{display:none;width: 100%;height: 100%;position: fixed;top: 0;background: rgba(0,0,0,0.7);z-index: 50;}
 
 /* 미디어쿼리 */
-@media (max-width: 1024px){
+@media (max-width: 1024px){ /* 모바일 레이아웃으로 변경지점 */
+    html {font-size: 50%;}
     .container{width:100%;}
 }
+@media (max-width: 800px){ 
+     html {font-size: 40%;}
+}
+@media (max-width: 700px){ 
+     html {font-size: 30%;}
+}
+ 
 
 
 

@@ -1,10 +1,9 @@
 import React from 'react'
-import { FaCode } from "react-icons/fa";
+import './Sections/LandingPage.css';
 
 function LandingPage() {
     return (
-        <>
-        </>
+        <div className="name">asd</div>
     )
 }
 
