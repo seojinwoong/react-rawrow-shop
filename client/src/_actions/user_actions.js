@@ -4,6 +4,7 @@ import {
     REGISTER_USER,
     AUTH_USER,
     LOGOUT_USER,
+    CHECK_ID
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -43,6 +44,16 @@ export function logoutUser(){
 
     return {
         type: LOGOUT_USER,
+        payload: request
+    }
+}
+
+export function checkId(compareId){
+    const request = axios.post(`${USER_SERVER}/checkId`, compareId)
+    .then(response => response.data);
+
+    return {
+        type: CHECK_ID,
         payload: request
     }
 }

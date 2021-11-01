@@ -14,9 +14,11 @@ router.get("/auth", auth, (req, res) => {
     isAdmin: req.user.role === 0 ? false : true,
     isAuth: true,
     userId: req.user.userId,
+    email: req.user.email,
     name: req.user.name,
     role: req.user.role,
-    image: req.user.image,
+    cart: req.user.cart,
+    history: req.user.history
   });
 });
 
@@ -69,6 +71,14 @@ router.get("/logout", auth, (req, res) => {
       });
     }
   );
+});
+
+router.post("/checkId", (req, res) => {
+  User.findOne({ userId: req.body.id }, (err, user) => {
+    if (err) return res.status(400).json({ success: false, err });
+    if (user) return res.status(200).json({ success: true, result: 'impossible' }) 
+    else return res.status(200).json({ success: true, result: 'possible' }) 
+  })
 });
 
 module.exports = router;

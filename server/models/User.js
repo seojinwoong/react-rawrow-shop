@@ -20,11 +20,11 @@ const userSchema = mongoose.Schema({
     },
     role : {
         type:Number,
-        default: 0 
+        default: 0 // 0 : 일반회원, 1: 관리자
     },
     address: {
         type: String,
-        default: '서울시'
+        default: ''
     },
     phone: {
         type: String,
