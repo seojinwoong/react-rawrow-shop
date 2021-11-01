@@ -1,5 +1,4 @@
-@charset "utf-8";
-/* Noto Sans KR */
+@charset "utf-8"; /* Noto Sans KR */
 @font-face { font-family: 'Noto Sans KR'; font-style: normal; font-weight: 100; src: url(http://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),
  url(http://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),
  url(http://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype'); } 
@@ -57,9 +56,12 @@ video,img { width: 100%; display: block; }
 
 i { font-style: normal; } 
 
-input,textarea { font-size:1.9rem; } 
-input::placeholder, 
-textarea::placeholder { color: #ccc; font-size: 1.9rem; } 
+select, input,textarea { font-size:1.9rem; } 
+input::placeholder, textarea::placeholder { color: #ccc; font-size: 1.9rem; } 
+
+input[type='number']::-webkit-inner-spin-button, 
+input[type='number']::-webkit-outer-spin-button { -webkit-appearance: none; -moz-appearance: none; appearance: none; } 
+input[type='number'] { -moz-appearance: textfield; } 
 
 /* clearfix */
 .clearfix { *zoom:1; } 
@@ -75,24 +77,33 @@ textarea::placeholder { color: #ccc; font-size: 1.9rem; }
 .container { position: relative; width: 1024px; margin: 0 auto; } 
 
 /* position-top */
-.t-10 { top:10px !important; } 
-.t-20 { top:20px !important; } 
-.t-30 { top:30px !important; } 
-.t-40 { top:40px !important; } 
-.t-50 { top:50px !important; } 
-.t-60 { top:60px !important; } 
-.t-70 { top:70px !important; } 
-.t-80 { top:80px !important; } 
-.t-90 { top:90px !important; } 
-.t-100 { top:100px !important; } 
+.t10 { top:10px !important; } 
+.t20 { top:20px !important; } 
+.t30 { top:30px !important; } 
+.t40 { top:40px !important; } 
+.t50 { top:50px !important; } 
+.t60 { top:60px !important; } 
+.t70 { top:70px !important; } 
+.t80 { top:80px !important; } 
+.t90 { top:90px !important; } 
+.t100 { top:100px !important; } 
 
 /* margin */
-.mt-10 { margin-top:10px !important; } 
-.mt-20 { margin-top:20px !important; } 
-.mt-30 { margin-top:30px !important; } 
-.mt-40 { margin-top:40px !important; } 
-.mt-50 { margin-top:50px !important; } 
-.mt-60 { margin-top:60px !important; } 
+.mt10 { margin-top:10px !important; } 
+.mt20 { margin-top:20px !important; } 
+.mt30 { margin-top:30px !important; } 
+.mt40 { margin-top:40px !important; } 
+.mt50 { margin-top:50px !important; } 
+.mt60 { margin-top:60px !important; } 
+
+/* margin */
+.mr5 { margin-right:5px !important; } 
+.mr10 { margin-right:10px !important; } 
+.mr20 { margin-right:20px !important; } 
+.mr30 { margin-right:30px !important; } 
+.mr40 { margin-right:40px !important; } 
+.mr50 { margin-right:50px !important; } 
+.mr60 { margin-right:60px !important; } 
 
 /* 그림자 */
 .shadow { display:none; width: 100%; height: 100%; position: fixed; top: 0; background: rgba(0,0,0,0.7); z-index: 50; } 
@@ -111,11 +122,11 @@ textarea::placeholder { color: #ccc; font-size: 1.9rem; }
  }
 @media (max-width: 800px) { html { font-size: 40%; } 
  .page-content { padding-top:94px; } 
- input, textarea, input::placeholder, textarea::placeholder { font-size: 16px; } 
+ select, input, textarea, input::placeholder, textarea::placeholder { font-size: 16px; } 
  }
 @media (max-width: 700px) { html { font-size: 30%; } 
  .page-content { padding-top:82px; } 
- input, textarea, input::placeholder, textarea::placeholder { font-size: 15px; } 
+ select, input, textarea, input::placeholder, textarea::placeholder { font-size: 15px; } 
  }
  
 

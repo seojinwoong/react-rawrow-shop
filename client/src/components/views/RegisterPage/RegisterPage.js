@@ -63,10 +63,12 @@ function RegisterPage(props) {
         </p>
         <p className="row">
           <label>성별</label>
-          <input type="radio" name="gender" value="0" id="0"/>
-          <label htmlFor="0" className="gender-txt">남자</label>
-          <input type="radio" name="gender" value="1" id="1"/>
-          <label htmlFor="1" className="gender-txt">여자</label>
+          <span className="radio-row common-input">
+            <input type="radio" name="gender" value="0" id="0" className="mr5"/>
+            <label htmlFor="0" className="gender-txt mr10">남자</label>
+            <input type="radio" name="gender" value="1" id="1" className="mr5"/>
+            <label htmlFor="1" className="gender-txt">여자</label>
+          </span>
         </p>
 
         <button className="submit-btn">회원가입</button>

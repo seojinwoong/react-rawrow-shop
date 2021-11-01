@@ -1,26 +1,29 @@
 @charset "utf-8";
 
-.signup-form { } 
-.signup-form .row { height:50px; margin: 10px 0; display: table; width: 100%; } 
-.signup-form .row label { display: table-cell; vertical-align: middle; width: 23rem; font-size: 1.9rem; font-weight: bold; } 
+.signup-form .row { margin: 10px 0; display: table; width: 100%; } 
+.signup-form .row > label { display: table-cell; vertical-align: middle; width: 23rem; font-size: 1.9rem; font-weight: bold; } 
 .signup-form .row .require { color: #ef5350; font-size: 10px; vertical-align: 8px; transform: translateX(5px); } 
-.signup-form .row .common-input { display: table-cell; vertical-align: middle; border: 2px solid #111; width: 100%; height: 100%; padding: 0 1rem; } 
-.signup-form .row .phone { width: 100px; } 
+.signup-form .row .common-input { display: table-cell; vertical-align: middle; border: 2px solid #111; width: 100%; height: 50px; padding: 0 1rem; } 
+.signup-form .row .phone { width: 100px; height:50px; } 
 .signup-form .row .dash { font-size: 30px; line-height: 0; transform: translateY(4px); display: inline-block; margin: 0 5px; } 
-.signup-form .row input[type='radio'] { } 
+.signup-form .submit-btn { cursor: pointer; background: #000; color: #fff; margin: 50px auto; display: block; padding: 10px 40px; font-size: 20px; font-weight: bold;} 
+.signup-form .row .radio-row {width:calc(100% - 23rem);}
+.signup-form .row input[type='radio'] {cursor: pointer;}
+.signup-form .row .gender-txt {font-size:18px; cursor: pointer;}
 
 /* 미디어쿼리 */
-@media (max-width: 1024px) { /* 모바일 레이아웃으로 변경지점 */}
- @media (max-width: 800px){
+@media (max-width: 800px){
  .signup-form .row label { font-size:16px; } 
- }
- @media (max-width: 700px){
+}
+@media (max-width: 700px){
  .signup-form .row label { font-size:15px; } 
- .signup-form .row, .signup-form .row .phone { height:40px; } 
- }
- @media (max-width: 500px){
+ .signup-form .row .common-input, .signup-form .row .phone { height:40px; } 
+ .signup-form .submit-btn { font-size:18px; padding:6px 30px; } 
+ .signup-form .row .gender-txt {font-size:15px}
+}
+@media (max-width: 500px){
  .signup-form .row .phone { width: 60px; } 
- }
+}
  
  
  
