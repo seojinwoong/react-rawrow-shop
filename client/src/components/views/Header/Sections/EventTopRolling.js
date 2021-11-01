@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay } from "swiper";
 import "swiper/swiper.scss";
 
-SwiperCore.use([Autoplay]);
+// SwiperCore.use([Autoplay]);
 
 function EventTopRolling() {
   return (

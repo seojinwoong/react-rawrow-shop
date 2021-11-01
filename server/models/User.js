@@ -22,6 +22,22 @@ const userSchema = mongoose.Schema({
         type:Number,
         default: 0 
     },
+    address: {
+        type: String,
+        default: '서울시'
+    },
+    phone: {
+        type: String,
+        default: ''
+    },
+    email: {
+        type: String,
+        default: ''
+    },
+    gender: {
+        type: Number,
+        default: 0 // 0 : 남자, 1: 여자
+    },
     token : {
         type: String,
     },
