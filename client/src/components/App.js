@@ -7,7 +7,7 @@ import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import Footer from "./views/Footer/Footer";
 import Header from "./views/Header/Header";
-import RegisterSuccess from "./views/RegisterPage/Sections/RegisterSuccess";
+import RegisterSuccess from "./views/RegisterPage/RegisterSuccess";
 
 //null   Anyone Can go inside
 //true   only logged in user can go inside

@@ -36,14 +36,14 @@ function RegisterPage(props) {
     if (MemberId.trim() != "") {
       dispatch(checkId({id: MemberId})).then(response => {
         if (response.payload.success) {
-          if (response.payload.result == 'possible') setIdConfirm(2);
-          else setIdConfirm(1);
+          if (response.payload.result == 'possible') setIdConfirm(3);
+          else setIdConfirm(2);
         } else {
           alert('아이디 중복검사 하는 과정을 실패하였습니다.');
         }
       })
     } else {
-      setIdConfirm(0);
+      setIdConfirm(1);
     }
   }
 
@@ -59,7 +59,7 @@ function RegisterPage(props) {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    if (IdConfirm == 0 || IdConfirm == 1) {
+    if (IdConfirm != 3) {
       alert('아이디 중복확인 검사를 통과해주세요');
       document.querySelector('#memberId').focus();
       return false;
@@ -101,8 +101,9 @@ function RegisterPage(props) {
           <label htmlFor="memberId">아이디 <FontAwesomeIcon icon={faStarOfLife} className="require"/></label>
           <input type="text" id="memberId" className="common-input" placeholder='아이디를 입력해주세요.' required onChange={idHandler} value={MemberId} autoComplete='off'/>
           <button type="button" className="confirm-btn" onClick={idConfirmHandler}>중복확인</button>
-          {IdConfirm == 1 && <span className="info-text not-allow">이미 존재하는 아이디입니다.</span>}
-          {IdConfirm == 2 && <span className="info-text allow">사용 가능한 아이디입니다.</span>}
+          {IdConfirm === 1 && <span className="info-text not-allow">아이디를 입력해주세요.</span>}
+          {IdConfirm === 2 && <span className="info-text not-allow">이미 존재하는 아이디입니다.</span>}
+          {IdConfirm === 3 && <span className="info-text allow">사용 가능한 아이디입니다.</span>}
         </p>
         <p className="row">
           <label htmlFor="memberPwd">비밀번호 <FontAwesomeIcon icon={faStarOfLife} className="require"/></label>

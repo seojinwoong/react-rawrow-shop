@@ -1,4 +1,4 @@
-@charset "utf-8"; /* Noto Sans KR */
+/* Noto Sans KR */
 @font-face { font-family: 'Noto Sans KR'; font-style: normal; font-weight: 100; src: url(http://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),
  url(http://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),
  url(http://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype'); } 
@@ -113,19 +113,19 @@ input[type='number'] { -moz-appearance: textfield; }
 
 .page-title { text-align: center; font-size: 4.5rem; font-weight: bold; margin:5rem 0; } 
 
-.page-content { padding-top:126px; } 
+.page-content { margin-top:126px; height:calc(100vh - 126px);} 
 /* 미디어쿼리 */
 @media (max-width: 1024px) { /* 모바일 레이아웃으로 변경지점 */
  html { font-size: 50%; } 
  .container { width:100%; padding:0 10px; } 
- .page-content { padding-top:108px; } 
+ .page-content { margin-top:108px; height:calc(100vh - 108px);} 
  }
 @media (max-width: 800px) { html { font-size: 40%; } 
- .page-content { padding-top:94px; } 
+ .page-content { margin-top:94px; height:calc(100vh - 94px);} 
  select, input, textarea, input::placeholder, textarea::placeholder { font-size: 16px; } 
  }
 @media (max-width: 700px) { html { font-size: 30%; } 
- .page-content { padding-top:82px; } 
+ .page-content { margin-top:82px; height:calc(100vh - 82px);} 
  select, input, textarea, input::placeholder, textarea::placeholder { font-size: 15px; } 
  }
  

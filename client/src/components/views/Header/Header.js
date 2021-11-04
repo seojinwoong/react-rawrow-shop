@@ -50,7 +50,7 @@ function Header(props) {
             <i>SEARCH</i>
             <FontAwesomeIcon icon={faSearch} className="mo-ico"/>
           </span>
-          <a className='menu-list' href="#">
+          <a className='menu-list' href="/login">
             <i>LOGIN</i>
             <FontAwesomeIcon icon={faUser} className="mo-ico"/>
           </a>
