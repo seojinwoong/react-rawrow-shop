@@ -108,8 +108,10 @@ input[type='number'] { -moz-appearance: textfield; }
 /* 그림자 */
 .shadow { display:none; width: 100%; height: 100%; position: fixed; top: 0; background: rgba(0,0,0,0.7); z-index: 50; } 
 
-.all-page { opacity:0; transition:all .4s; } 
-.all-page.active { transition-delay: .3s; opacity:1; } 
+/* .all-page { opacity:0; transition:all .4s; } 
+.all-page.active { transition-delay: .3s; opacity:1; }  */
+
+.main-c {color:#ff5000;}
 
 .page-title { text-align: center; font-size: 4.5rem; font-weight: bold; margin:5rem 0; } 
 

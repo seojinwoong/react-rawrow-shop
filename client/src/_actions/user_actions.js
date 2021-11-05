@@ -4,7 +4,8 @@ import {
     REGISTER_USER,
     AUTH_USER,
     LOGOUT_USER,
-    CHECK_ID
+    CHECK_ID,
+    FIND_MEMBER_INFO
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -54,6 +55,16 @@ export function checkId(compareId){
 
     return {
         type: CHECK_ID,
+        payload: request
+    }
+}
+
+export function findMemberInfo(dataToSubmit){
+    const request = axios.post(`${USER_SERVER}/findMemberIndo`, dataToSubmit)
+    .then(response => response.data);
+
+    return {
+        type: FIND_MEMBER_INFO,
         payload: request
     }
 }

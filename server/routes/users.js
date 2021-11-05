@@ -81,4 +81,19 @@ router.post("/checkId", (req, res) => {
   })
 });
 
+router.post("/findMemberIndo", (req, res) => {
+  let flag = req.body.flag;
+  let info = {};
+  if (flag == 1) info = { email: req.body.inputEmail, name: req.body.inputName }
+  else if (flag == 2) info = { name: req.body.inputName, phone: req.body.inputPhone }
+  else if (flag == 3) info = { userId: req.body.inputId, email: req.body.inputEmail, name: req.body.inputName }
+  else if (flag == 4) info = { userId: req.body.inputId, phone: req.body.inputPhone, name: req.body.inputName }
+  
+  User.findOne(info, (err, user) => {
+    if (err) return res.status(400).json({ success: false, err });
+    if (!user) return res.json({ success: true, findSuccess: false, msg: '일치하는 계정 정보가 없습니다.' })
+    return res.status(200).json({ success: true, findSuccess: true, user, flag })
+  })
+});
+
 module.exports = router;
