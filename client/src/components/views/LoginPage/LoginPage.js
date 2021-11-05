@@ -14,7 +14,21 @@ function LoginPage(props) {
   const pwdHandler = (e) => { setLoginPwd(e.target.value) }
   const loginSubmitHandler = (e) => {
     e.preventDefault();
-    
+    let dataToSubmit = {
+      userId: LoginId,
+      password: LoginPwd
+    };
+    dispatch(loginUser(dataToSubmit))
+      .then(response => {
+        if (response.payload.loginSuccess) {
+          props.history.push('/');
+        } else {
+          alert(`${response.payload.message}`);
+        }
+      })
+      .catch(err => {
+        alert('로그인 과정에서 오류가 발생하였습니다.');
+      })
   }
 
   return (
@@ -35,8 +49,8 @@ function LoginPage(props) {
       </form>
 
       <div className="link-wrapper">
-        <a href="">아이디 찾기</a>
-        <a href="">비밀번호 찾기</a>
+        <a href="/findUserInfo/findId">아이디 찾기</a>
+        <a href="/findUserInfo/findPwd">비밀번호 찾기</a>
         <a href="/register">회원가입</a>
       </div>
     </div>

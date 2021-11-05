@@ -3,12 +3,17 @@ import "./Sections/Header.css";
 import EventTopRolling from "./Sections/EventTopRolling";
 import { useLocation } from "react-router-dom";
 import LogoImg from '../../../img/logo.png';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from '../../../_actions/user_actions';
 
 // fontawesome Icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faUser, faShoppingCart, faBars, faTimes, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faUser, faShoppingCart, faBars, faTimes, faUserPlus, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 function Header(props) {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+
   const [MenuActive, setMenuActive] = useState(false);
   const [SearchBarActive, setSearchBarActive] = useState(false);
   const [SearchValue, setSearchValue] = useState('');
@@ -19,6 +24,15 @@ function Header(props) {
     setSearchBarActive(value);
     if (!value) setSearchValue('');
   }
+  const logoutHandler = () => {
+    dispatch(logoutUser()).then(response => {
+      if (response.payload.success) {
+        window.location.replace("/");
+      } else {
+        alert('로그아웃이 실패하였습니다.');
+      }
+    })
+  };
 
   const location = useLocation();
   useEffect(() => {
@@ -46,22 +60,37 @@ function Header(props) {
         </nav>
 
         <section className="right-menu">
+          {
+            user.userData && user.userData.isAuth
+            ? ( 
+              <>
+                <a className='menu-list' href="#">
+                  <i>CART</i>
+                  <FontAwesomeIcon icon={faShoppingCart} className="mo-ico"/>
+                </a>
+                <span className='menu-list' onClick={logoutHandler}>
+                  <i>LOGOUT</i>
+                  <FontAwesomeIcon icon={faSignOutAlt} className="mo-ico"/>
+                </span>
+              </>
+              )
+            : (
+              <>
+                <a className='menu-list' href="/login">
+                  <i>LOGIN</i>
+                  <FontAwesomeIcon icon={faUser} className="mo-ico"/>
+                </a>
+                <a className='menu-list' href="/register">
+                  <i>SIGNUP</i>
+                  <FontAwesomeIcon icon={faUserPlus} className="mo-ico"/>
+                </a>
+              </>
+              )
+          }
           <span className='menu-list' onClick={()=>{searchBarHandler(!SearchBarActive)}}>
             <i>SEARCH</i>
             <FontAwesomeIcon icon={faSearch} className="mo-ico"/>
           </span>
-          <a className='menu-list' href="/login">
-            <i>LOGIN</i>
-            <FontAwesomeIcon icon={faUser} className="mo-ico"/>
-          </a>
-          <a className='menu-list' href="/register">
-            <i>SIGNUP</i>
-            <FontAwesomeIcon icon={faUserPlus} className="mo-ico"/>
-          </a>
-          <a className='menu-list' href="#">
-            <i>CART</i>
-            <FontAwesomeIcon icon={faShoppingCart} className="mo-ico"/>
-          </a>
           <span className='menu-list mo-hamburger'>
             {
               MenuActive == false
