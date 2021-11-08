@@ -4,7 +4,8 @@ import {
     AUTH_USER,
     LOGOUT_USER,
     CHECK_ID,
-    FIND_MEMBER_INFO
+    FIND_MEMBER_INFO,
+    CHANGE_PWD
 } from '../_actions/types';
  
 
@@ -22,6 +23,8 @@ export default function(state={},action){
             return {...state }
         case FIND_MEMBER_INFO:
             return {...state, findResult: action.payload}
+        case CHANGE_PWD:
+            return {...state }
         default:
             return state;
     }

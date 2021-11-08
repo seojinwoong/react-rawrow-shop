@@ -105,6 +105,14 @@ input[type='number'] { -moz-appearance: textfield; }
 .mr50 { margin-right:50px !important; } 
 .mr60 { margin-right:60px !important; } 
 
+.ml5 { margin-left:5px !important; } 
+.ml10 { margin-left:10px !important; } 
+.ml20 { margin-left:20px !important; } 
+.ml30 { margin-left:30px !important; } 
+.ml40 { margin-left:40px !important; } 
+.ml50 { margin-left:50px !important; } 
+.ml60 { margin-left:60px !important; } 
+
 /* 그림자 */
 .shadow { display:none; width: 100%; height: 100%; position: fixed; top: 0; background: rgba(0,0,0,0.7); z-index: 50; } 
 

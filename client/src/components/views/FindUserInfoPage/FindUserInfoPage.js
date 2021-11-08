@@ -17,7 +17,7 @@ function FindUserInfoPage(props) {
   const [Phone1, setPhone1] = useState('010');
   const [Phone2, setPhone2] = useState('');
   const [Phone3, setPhone3] = useState('');
-  const [FirstPage, setFirstPage] = useState(true);
+  const [FirstPage, setFirstPage] = useState(true); 
   const [Idresult, setIdresult] = useState(false);
   const [Pwdresult, setPwdresult] = useState(false);
 
@@ -188,7 +188,6 @@ function FindUserInfoPage(props) {
         Pwdresult && <PwdResultPage/>
       }
 
-    
     </div>
   );
 }

@@ -1,0 +1,16 @@
+
+#productsUploadPage .row { padding: 10px 0; display: table; width: 100%; } 
+#productsUploadPage .row label { display: block; vertical-align: middle; font-size: 20px; font-weight: bold; margin-bottom:10px; } 
+#productsUploadPage .row .common-input { border: 2px solid #111; width: 100%; height: 50px; padding: 0 1rem; } 
+#productsUploadPage .row select.common-input { width:auto; } 
+#productsUploadPage .row .size-section { margin-bottom:10px; } 
+#productsUploadPage .row .size-section .p-quantity { width:350px; margin-left:10px; } 
+#productsUploadPage .row .size-select-wrapper { position: relative; } 
+#productsUploadPage .row .size-btn { } 
+#productsUploadPage .row .size-btn.plus-size-btn { } 
+#productsUploadPage .row .size-btn.minus-size-btn { } 
+#productsUploadPage .row .ea { font-size: 24px; vertical-align: bottom; padding-left: 10px; line-height: 1; font-weight: bold; } 
+#productsUploadPage button { margin-top: 10px; background: #111; color: #fff; font-size: 20px; font-weight: 500; height: 40px; display: block; width: 300px; margin: 50px auto; cursor: pointer; } 
+
+@media (max-width:800px) { } 
+@media (max-width:540px) { } 

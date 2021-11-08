@@ -8,7 +8,7 @@ import { logoutUser } from '../../../_actions/user_actions';
 
 // fontawesome Icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faUser, faShoppingCart, faBars, faTimes, faUserPlus, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingBag, faSearch, faUser, faShoppingCart, faBars, faTimes, faUserPlus, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 function Header(props) {
   const dispatch = useDispatch();
@@ -60,6 +60,15 @@ function Header(props) {
         </nav>
 
         <section className="right-menu">
+          {
+            user.userData && user.userData.isAdmin 
+            && (
+                <a className='menu-list' href="/productsUpload">
+                  <i>상품업로드</i>
+                  <FontAwesomeIcon icon={faShoppingBag} className="mo-ico"/>
+                </a>
+            )
+          }
           {
             user.userData && user.userData.isAuth
             ? ( 

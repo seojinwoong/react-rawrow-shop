@@ -5,7 +5,8 @@ import {
     AUTH_USER,
     LOGOUT_USER,
     CHECK_ID,
-    FIND_MEMBER_INFO
+    FIND_MEMBER_INFO,
+    CHANGE_PWD
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -65,6 +66,16 @@ export function findMemberInfo(dataToSubmit){
 
     return {
         type: FIND_MEMBER_INFO,
+        payload: request
+    }
+}
+
+export function changePwd(dataToSubmit){
+    const request = axios.post(`${USER_SERVER}/changePwd`, dataToSubmit)
+    .then(response => response.data);
+
+    return {
+        type: CHANGE_PWD,
         payload: request
     }
 }

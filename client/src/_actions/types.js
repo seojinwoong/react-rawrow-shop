@@ -4,3 +4,4 @@ export const AUTH_USER = 'auth_user';
 export const LOGOUT_USER = 'logout_user';
 export const CHECK_ID = 'check_id';
 export const FIND_MEMBER_INFO = 'find_member_info';
+export const CHANGE_PWD = 'change_pwd';

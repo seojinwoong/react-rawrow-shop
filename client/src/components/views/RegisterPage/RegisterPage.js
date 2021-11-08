@@ -86,7 +86,7 @@ function RegisterPage(props) {
         props.history.push('/register/success');
       } else {
         alert('회원가입 과정에서 오류가 발생했습니다.')
-        console.log('오류내용 : ', response.payload.err.errMsg);
+        console.log('오류내용 : ', response.payload.err);
       }
     })
 
@@ -99,7 +99,7 @@ function RegisterPage(props) {
       <form className="signup-form" onSubmit={submitHandler}>
         <p className="row">
           <label htmlFor="memberId">아이디 <FontAwesomeIcon icon={faStarOfLife} className="require"/></label>
-          <input type="text" id="memberId" className="common-input" placeholder='아이디를 입력해주세요.' required onChange={idHandler} value={MemberId} autoComplete='off'/>
+          <input type="text" id="memberId" className="common-input" placeholder='아이디를 입력해주세요.' required onChange={idHandler} value={MemberId} autoComplete='on'/>
           <button type="button" className="confirm-btn" onClick={idConfirmHandler}>중복확인</button>
           {IdConfirm === 1 && <span className="info-text not-allow">아이디를 입력해주세요.</span>}
           {IdConfirm === 2 && <span className="info-text not-allow">이미 존재하는 아이디입니다.</span>}
@@ -107,19 +107,19 @@ function RegisterPage(props) {
         </p>
         <p className="row">
           <label htmlFor="memberPwd">비밀번호 <FontAwesomeIcon icon={faStarOfLife} className="require"/></label>
-          <input type="password" id="memberPwd" className="common-input" placeholder="비밀번호를 입력해주세요.(최소 5자 이상)" minLength='5' required onChange={pwdHandler} value={MemberPwd} autoComplete='off'/>
+          <input type="password" id="memberPwd" className="common-input" placeholder="비밀번호를 입력해주세요.(최소 5자 이상)" minLength='5' required onChange={pwdHandler} value={MemberPwd} autoComplete='on'/>
         </p>
         <p className="row">
           <label htmlFor="memberPwd2">비밀번호 확인<FontAwesomeIcon icon={faStarOfLife} className="require"/></label>
-          <input type="password" id="memberPwd2" className="common-input" placeholder="비밀번호를 입력해주세요." required onChange={pwdHandler2} value={MemberPwd2} autoComplete='off'/>
+          <input type="password" id="memberPwd2" className="common-input" placeholder="비밀번호를 입력해주세요." required onChange={pwdHandler2} value={MemberPwd2} autoComplete='on'/>
         </p>
         <p className="row">
           <label htmlFor="memberName">이름<FontAwesomeIcon icon={faStarOfLife} className="require"/></label>
-          <input type="text" id="memberName" className="common-input" required onChange={nameHandler} value={MemberName} autoComplete='off'/>
+          <input type="text" id="memberName" className="common-input" required onChange={nameHandler} value={MemberName} autoComplete='on'/>
         </p>
         <p className="row">
           <label htmlFor="memberAddress">주소<FontAwesomeIcon icon={faStarOfLife} className="require"/></label>
-          <input type="text" id="memberAddress" className="common-input" required onChange={addressHandler} value={MemberAddress} autoComplete='off'/>
+          <input type="text" id="memberAddress" className="common-input" required onChange={addressHandler} value={MemberAddress} autoComplete='on'/>
         </p>
         <p className="row">
           <label>휴대전화<FontAwesomeIcon icon={faStarOfLife} className="require"/></label>
@@ -132,13 +132,13 @@ function RegisterPage(props) {
             <option value="019">019</option>
           </select>
           <span className='dash'>-</span>
-          <input type="number" className="common-input phone phone-2" onChange={phoneInputHandler} data-maxlength="4" data-phone="2" value={Phone2} required autoComplete='off'/>
+          <input type="number" className="common-input phone phone-2" onChange={phoneInputHandler} data-maxlength="4" data-phone="2" value={Phone2} required autoComplete='on'/>
           <span className='dash'>-</span>
-          <input type="number" className="common-input phone phone-3" onChange={phoneInputHandler} data-maxlength="4" data-phone="3" value={Phone3} required autoComplete='off'/>
+          <input type="number" className="common-input phone phone-3" onChange={phoneInputHandler} data-maxlength="4" data-phone="3" value={Phone3} required autoComplete='on'/>
         </p>
         <p className="row">
           <label htmlFor="memberEmail">이메일<FontAwesomeIcon icon={faStarOfLife} className="require"/></label>
-          <input type="email" id="memberEmail" className="common-input" required onChange={emailHandler} value={MemberEmail} autoComplete='off'/>
+          <input type="email" id="memberEmail" className="common-input" required onChange={emailHandler} value={MemberEmail} autoComplete='on'/>
         </p>
         <p className="row">
           <label>성별</label>

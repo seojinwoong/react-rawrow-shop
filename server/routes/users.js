@@ -3,6 +3,7 @@ const router = express.Router();
 const { User } = require("../models/User");
 
 const { auth } = require("../middleware/auth");
+const { response } = require("express");
 
 //=================================
 //             User
@@ -80,6 +81,37 @@ router.post("/checkId", (req, res) => {
     else return res.status(200).json({ success: true, result: 'possible' }) 
   })
 });
+
+// router.post("/changePwd", (req, res) => {
+//   User.findOne({ _id: req.body.userKey }, (err, user) => {
+//     if (err) return res.json({ success: false, err })
+//     let userCopy = user;
+//     User.deleteOne(
+//       {_id: req.body.userKey},
+//       { new : true },
+//       (err) => {
+//         if (err) return res.json({ success: false, err })
+//         let newData = {
+//           userId: userCopy.userId,
+//           password: userCopy.password,
+//           name: userCopy.name,
+//           address: userCopy.address,
+//           phone: userCopy.phone,
+//           email: userCopy.email,
+//           gender: userCopy.gender
+//         }
+//         const newUser = new User(newData);
+
+//         newUser.save((err, doc) => {
+//           if (err) return res.json({ success: false, err });
+//           return res.status(200).json({
+//             success: true,
+//           });
+//         });
+//       }
+//     )
+//   })
+// });
 
 router.post("/findMemberIndo", (req, res) => {
   let flag = req.body.flag;
