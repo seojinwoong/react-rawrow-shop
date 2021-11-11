@@ -36,6 +36,9 @@ const productSchema = mongoose.Schema({
     views: {
         type: Number,
         default: 0
+    },
+    size: {
+        type: Array
     }
 }, { timestamps: true })
 

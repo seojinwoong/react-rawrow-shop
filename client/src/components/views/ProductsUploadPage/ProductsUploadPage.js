@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import FileUpload from '../../utils/FileUpload';
+import axios from 'axios';
 import './Sections/ProductsUploadPage.css';
+import { parseCurrency, parseOnlyNumber } from '../../utils/utils';
 
 // fontawesome Icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle, faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 
-function ProductsUploadPage() {
+function ProductsUploadPage(props) {
     let [SizeQuantity, setSizeQuantity] = useState(1);
     const [Images, setImages] = useState([]);
+    const [ProductName, setProductName] = useState('');
+    const [ProductCategory, setProductCategory] = useState(1);
+    const [ProductPrice, setProductPrice] = useState('');
+    const [ProductDescription, setProductDescription] = useState('');
+    const [ProductCaution, setProductCaution] = useState('');
     const [ProductSize, setProductSize] = useState([
-        {size: 'S', sizeQuantity: ''}
+        {size: 'S', sizeAmouts: ''}
     ]);
 
     const sizeHandler = (idx, event) => {
@@ -20,7 +27,7 @@ function ProductsUploadPage() {
     }
     const sizeQuantityHandler = (idx, event) => {
         let copy = [...ProductSize];
-        copy[idx].sizeQuantity = event.target.value;
+        copy[idx].sizeAmouts = parseCurrency(event.target.value);
         setProductSize(copy);
     }
 
@@ -28,20 +35,35 @@ function ProductsUploadPage() {
         if (type == 'plus') {
             if (SizeQuantity < 6) {
                 setSizeQuantity(++SizeQuantity);
-                let copy = [...ProductSize];
-                copy.push({size:'S', sizeQuantity:''});
-                setProductSize(copy);
+                setProductSize([...ProductSize, {size:'S', sizeAmouts:''}]);
             }
         }
         else {
             setSizeQuantity(--SizeQuantity);
             let copy = [...ProductSize];
-            copy.slice(-1).pop();
+            copy.splice(-1,1);
             setProductSize(copy);
         }
     }
     const inputHandler = (e) => {
-        console.log('눌렀다');
+        let inputElement = e.target.attributes.getNamedItem('data-element').value;
+        switch (inputElement) {
+            case "p-name" : 
+                setProductName(e.target.value);
+                break;
+            case "p-category" : 
+                setProductCategory(e.target.value);
+                break;
+            case "p-price" : 
+                setProductPrice(parseCurrency(e.target.value));
+                break;
+            case "p-description" : 
+                setProductDescription(e.target.value);
+                break;
+            case "p-caution" : 
+                setProductCaution(e.target.value);
+                break;
+        }
     }
 
     const showSizeSelection = () => {
@@ -56,10 +78,10 @@ function ProductsUploadPage() {
                                 <option value="XXL">XXL</option>
                                 <option value="Free">사이즈 없음</option>
                             </select>
-                            <input type="number" 
+                            <input type="text" 
                             className="common-input p-quantity" 
                             placeholder='해당 사이즈의 재고량을 입력해주세요'
-                            value={ProductSize[i].sizeQuantity}
+                            value={ProductSize[i].sizeAmouts}
                             onChange={(e)=>{sizeQuantityHandler(i, e)}}
                             />
                             <span className="ea">EA</span>
@@ -75,32 +97,45 @@ function ProductsUploadPage() {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        ProductSize.map((el,idx) => {
-            let current = ProductSize[idx].size;
-            for (let key in ProductSize) {
-                if (ProductSize[key].size == current ) {
-                    alert('사이즈 선택값은 중복될 수 없습니다.');
-                    return false;
+        for (let i = 0; i< ProductSize.length; i++) {
+            const current = ProductSize[i].size;
+            let flag = false;
+            for (let j = i+1; j < ProductSize.length; j++) {
+                if (current == ProductSize[j].size) {
+                    flag = true;
+                    break;
                 }
             }
-        })
-        // for (let i = 0; i< ProductSize.length; i++) {
-        //     const current = ProductSize[i].size;
-        //     let flag = false;
-        //     for (let j = i+1; j < ProductSize.length; j++) {
-        //         if (current == ProductSize[j].size) {
-        //             flag = true;
-        //             break;
-        //         }
-        //     }
-        //     if(flag) {
-        //         alert('사이즈 선택값은 중복될 수 없습니다.');
-        //         return false;
-        //     }
+            if(flag) {
+                alert('사이즈 선택값은 중복될 수 없습니다.');
+                return false;
+            }
+        }
 
-        // }
+        // 값 넣기
+        const body = {
+            writer: props.user.userData._id,
+            title: ProductName,
+            category: ProductCategory,
+            price: ProductPrice,
+            description: ProductDescription,
+            caution: ProductCaution,
+            size: ProductSize,
+            images: Images
+        }
+
+        axios.post('/api/product', body)
+            .then(response => {
+                if (response.data.success) {
+                    alert('상품 업로드에 성공했습니다.');
+                    props.history.push('/');
+                } else {
+                    alert('상품 업로드에 실패했습니다.');
+
+                }
+            })
     }
-  
+
     return (
         <div className="container" id="productsUploadPage">
             <h2 className="page-title">상품업로드</h2>
@@ -113,12 +148,12 @@ function ProductsUploadPage() {
                 
                 <article className="row">
                     <label>상품명</label>
-                    <input type="text" className="common-input" data-element="p-name" onChange={inputHandler}/>
+                    <input type="text" className="common-input" data-element="p-name" onChange={inputHandler} value={ProductName} required/>
                 </article>
 
                 <article className="row">
                     <label>상품 카테고리</label>
-                    <select className="common-input" data-element="p-category" onChange={inputHandler} >
+                    <select className="common-input" data-element="p-category" onChange={inputHandler} value={ProductCategory}>
                         <option value="1">가방</option>
                         <option value="2">안경</option>
                         <option value="3">의류</option>
@@ -127,17 +162,17 @@ function ProductsUploadPage() {
 
                 <article className="row">
                     <label>가격</label>
-                    <input type="number" className="common-input" data-element="money" data-element="p-price" onChange={inputHandler}/>
+                    <input type="text" className="common-input" data-element="p-price" onChange={inputHandler} value={ProductPrice} required/>
                 </article>
 
                 <article className="row">
                     <label>상품 설명</label>
-                    <textarea className="common-input" data-element="p-description" onChange={inputHandler}></textarea>
+                    <textarea className="common-input" data-element="p-description" onChange={inputHandler} value={ProductDescription}></textarea>
                 </article>
 
                 <article className="row">
                     <label>상품 주의사항</label>
-                    <textarea className="common-input" data-element="p-caution" onChange={inputHandler}></textarea>
+                    <textarea className="common-input" data-element="p-caution" onChange={inputHandler} value={ProductCaution}></textarea>
                 </article>
 
                 <article className="row">

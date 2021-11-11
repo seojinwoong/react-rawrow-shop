@@ -17,7 +17,7 @@ function FileUpload(props) {
     }
     formData.append('file', files[0]);
 
-    axios.post('/api/products/image', formData, config)
+    axios.post('/api/product/image', formData, config)
         .then(response => {
             if ( response.data.success ) {
                 setImages([...Images, response.data.filePath]);
@@ -51,6 +51,7 @@ function FileUpload(props) {
           </section>
         )}
       </Dropzone>
+      {Images.length > 0 &&
       <div className="uploaded-img-wrap">
         {Images.map((el, idx)=>(
           <div className='uploaded-img' onClick={()=>{imgDeleteHandler(el)}} key={idx}>
@@ -59,6 +60,7 @@ function FileUpload(props) {
           </div>
         ))}
       </div>
+      }
     </div>
   );
 }
