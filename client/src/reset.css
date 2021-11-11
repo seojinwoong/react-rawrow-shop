@@ -76,6 +76,12 @@ input[type='number'] { -moz-appearance: textfield; }
 /* 가운데 영역 */
 .container { position: relative; width: 1024px; margin: 0 auto; } 
 
+/* 툴팁 */
+.tooltip-wrapper { position: relative; display: inline-block;} 
+.tooltiptext { transition: all .3s; opacity:0; transform: translateY(10px); top:150%; left:50%; margin-left:-60px; visibility: hidden; width: 120px; background-color: black; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; } 
+.tooltip-wrapper:hover .tooltiptext { visibility: visible; transform: translateY(0); opacity:1;} 
+.tooltiptext::after { content: " "; position: absolute; border-style: solid; border-width: 5px; bottom:100%; left:50%; margin-left:-5px; border-color: transparent transparent black transparent; } 
+
 /* position-top */
 .t10 { top:10px !important; } 
 .t20 { top:20px !important; } 
@@ -117,13 +123,14 @@ input[type='number'] { -moz-appearance: textfield; }
 .shadow { display:none; width: 100%; height: 100%; position: fixed; top: 0; background: rgba(0,0,0,0.7); z-index: 50; } 
 
 /* .all-page { opacity:0; transition:all .4s; } 
-.all-page.active { transition-delay: .3s; opacity:1; }  */
+.all-page.active { transition-delay: .3s; opacity:1; } */
 
-.main-c {color:#ff5000;}
+.main-c { color:#ff5000; } 
 
 .page-title { text-align: center; font-size: 4.5rem; font-weight: bold; margin:5rem 0; } 
 
-.page-content { margin-top:146px; margin-bottom: 50px; height:auto;} 
+.page-content { margin-top:146px; margin-bottom: 50px; height:auto; } 
+
 /* 미디어쿼리 */
 @media (max-width: 1024px) { /* 모바일 레이아웃으로 변경지점 */
  html { font-size: 50%; } 

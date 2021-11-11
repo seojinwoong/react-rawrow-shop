@@ -17,6 +17,7 @@ function Header(props) {
   const [MenuActive, setMenuActive] = useState(false);
   const [SearchBarActive, setSearchBarActive] = useState(false);
   const [SearchValue, setSearchValue] = useState('');
+  const [WaitAndShow, setWaitAndShow] = useState(false);
 
   const menuHandler = () => {setMenuActive(!MenuActive);}
   const searchTextHandler = (e) => {setSearchValue(e.target.value)}
@@ -35,6 +36,7 @@ function Header(props) {
   };
 
   const location = useLocation();
+
   useEffect(() => {
     if(location.pathname == "/") {
       document.querySelector('.logo').classList.add('mainpage');
@@ -42,6 +44,12 @@ function Header(props) {
     document.querySelector('.all-page').classList.add('active');
   }, [])
 
+  useEffect(() => {
+    let timer = setTimeout(()=>{
+      setWaitAndShow(true);
+    },100)
+    return () => clearTimeout(timer);
+  }, [])
   return (
     <div className="header-wrapper">
 
@@ -59,55 +67,58 @@ function Header(props) {
           <a href="#">WEAR</a>
         </nav>
 
-        <section className="right-menu">
-          {
-            user.userData && user.userData.isAdmin 
-            && (
-                <a className='menu-list' href="/productsUpload">
-                  <i>상품업로드</i>
-                  <FontAwesomeIcon icon={faShoppingBag} className="mo-ico"/>
-                </a>
-            )
-          }
-          {
-            user.userData && user.userData.isAuth
-            ? ( 
-              <>
-                <a className='menu-list' href="#">
-                  <i>CART</i>
-                  <FontAwesomeIcon icon={faShoppingCart} className="mo-ico"/>
-                </a>
-                <span className='menu-list' onClick={logoutHandler}>
-                  <i>LOGOUT</i>
-                  <FontAwesomeIcon icon={faSignOutAlt} className="mo-ico"/>
-                </span>
-              </>
-              )
-            : (
-              <>
-                <a className='menu-list' href="/login">
-                  <i>LOGIN</i>
-                  <FontAwesomeIcon icon={faUser} className="mo-ico"/>
-                </a>
-                <a className='menu-list' href="/register">
-                  <i>SIGNUP</i>
-                  <FontAwesomeIcon icon={faUserPlus} className="mo-ico"/>
-                </a>
-              </>
-              )
-          }
-          <span className='menu-list' onClick={()=>{searchBarHandler(!SearchBarActive)}}>
-            <i>SEARCH</i>
-            <FontAwesomeIcon icon={faSearch} className="mo-ico"/>
-          </span>
-          <span className='menu-list mo-hamburger'>
+        {
+          WaitAndShow &&
+          <section className="right-menu">
             {
-              MenuActive == false
-              ? <FontAwesomeIcon icon={faBars} className="mo-ico" onClick={menuHandler}/>
-              : <FontAwesomeIcon icon={faTimes} className="mo-ico" onClick={menuHandler}/>
+              user.userData && user.userData.isAdmin 
+              && (
+                  <a className='menu-list' href="/productsUpload">
+                    <i>상품업로드</i>
+                    <FontAwesomeIcon icon={faShoppingBag} className="mo-ico"/>
+                  </a>
+              )
             }
-          </span>
-        </section>
+            {
+              user.userData && user.userData.isAuth
+              ? ( 
+                <>
+                  <a className='menu-list' href="#">
+                    <i>CART</i>
+                    <FontAwesomeIcon icon={faShoppingCart} className="mo-ico"/>
+                  </a>
+                  <span className='menu-list' onClick={logoutHandler}>
+                    <i>LOGOUT</i>
+                    <FontAwesomeIcon icon={faSignOutAlt} className="mo-ico"/>
+                  </span>
+                </>
+                )
+              : (
+                <>
+                  <a className='menu-list' href="/login">
+                    <i>LOGIN</i>
+                    <FontAwesomeIcon icon={faUser} className="mo-ico"/>
+                  </a>
+                  <a className='menu-list' href="/register">
+                    <i>SIGNUP</i>
+                    <FontAwesomeIcon icon={faUserPlus} className="mo-ico"/>
+                  </a>
+                </>
+                )
+            }
+            <span className='menu-list' onClick={()=>{searchBarHandler(!SearchBarActive)}}>
+              <i>SEARCH</i>
+              <FontAwesomeIcon icon={faSearch} className="mo-ico"/>
+            </span>
+            <span className='menu-list mo-hamburger'>
+              {
+                MenuActive == false
+                ? <FontAwesomeIcon icon={faBars} className="mo-ico" onClick={menuHandler}/>
+                : <FontAwesomeIcon icon={faTimes} className="mo-ico" onClick={menuHandler}/>
+              }
+            </span>
+          </section>
+        }
       </div>
       {/* // nav-bar */}
 
