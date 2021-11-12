@@ -10,6 +10,7 @@ import Header from "./views/Header/Header";
 import RegisterSuccess from "./views/RegisterPage/RegisterSuccess";
 import FindUserInfoPage from "./views/FindUserInfoPage/FindUserInfoPage";
 import ProductsUploadPage from './views/ProductsUploadPage/ProductsUploadPage';
+import ShopPage from './views/ShopPage/ShopPage';
 
 //null   Anyone Can go inside
 //true   only logged in user can go inside
@@ -27,7 +28,8 @@ function App() {
             <Route exact path="/register" component={Auth(RegisterPage, false)} />
             <Route exact path="/register/success" component={Auth(RegisterSuccess, false)} />
             <Route exact path="/findUserInfo/:findWhat" component={Auth(FindUserInfoPage, false)} />
-            <Route exact path="/productsUpload" component={Auth(ProductsUploadPage, true, true)} />
+            <Route exact path="/product/upload" component={Auth(ProductsUploadPage, true, true)} />
+            <Route exact path="/shop/:category" component={Auth(ShopPage, null)} />
           </Switch>
         </div>
         <Footer />

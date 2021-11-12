@@ -62,9 +62,9 @@ function Header(props) {
         <h1 className="logo"><a href="/"><img src={LogoImg} alt="RAWROW 로고"/></a></h1>
         
         <nav className={ MenuActive ? 'nav-menu active' : 'nav-menu' } >
-          <a href="#">BAG</a>
-          <a href="#">EYE</a>
-          <a href="#">WEAR</a>
+          <a href="/shop/1">BAG</a>
+          <a href="/shop/2">EYE</a>
+          <a href="/shop/3">WEAR</a>
         </nav>
 
         {
@@ -73,7 +73,7 @@ function Header(props) {
             {
               user.userData && user.userData.isAdmin 
               && (
-                  <a className='menu-list' href="/productsUpload">
+                  <a className='menu-list' href="/product/upload">
                     <i>상품업로드</i>
                     <FontAwesomeIcon icon={faShoppingBag} className="mo-ico"/>
                   </a>
