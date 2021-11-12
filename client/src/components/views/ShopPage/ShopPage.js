@@ -26,7 +26,6 @@ function ShopPage(props) {
                 if (body.isLoadMore) {
                     setProductArray([...ProductArray, response.data.productInfo]);
                 } else {
-                    console.log('호호', response.data.productInfo);
                     setProductArray(response.data.productInfo);
                 }
                 setPostSize(response.data.postSize);
