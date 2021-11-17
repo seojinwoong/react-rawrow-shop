@@ -11,6 +11,7 @@ import RegisterSuccess from "./views/RegisterPage/RegisterSuccess";
 import FindUserInfoPage from "./views/FindUserInfoPage/FindUserInfoPage";
 import ProductsUploadPage from './views/ProductsUploadPage/ProductsUploadPage';
 import ShopPage from './views/ShopPage/ShopPage';
+import ProductDetailPage from './views/ProductDetailPage/ProductDetailPage';
 
 //null   Anyone Can go inside
 //true   only logged in user can go inside
@@ -30,6 +31,7 @@ function App() {
             <Route exact path="/findUserInfo/:findWhat" component={Auth(FindUserInfoPage, false)} />
             <Route exact path="/product/upload" component={Auth(ProductsUploadPage, true, true)} />
             <Route exact path="/shop/:category" component={Auth(ShopPage, null)} />
+            <Route exact path="/product/:productId" component={Auth(ProductDetailPage, null)} />
           </Switch>
         </div>
         <Footer />

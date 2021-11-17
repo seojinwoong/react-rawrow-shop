@@ -42,12 +42,12 @@ function ShopPage(props) {
         {Category == 1 ? 'BAG' : Category == 2 ? 'EYE' : 'WEAR'}
       </h2>
       
-      <ul className="product-lists-wrap clearfix">
+      <ul className="product-lists-wrap">
           {
               ProductArray.map((el, idx) => (
                 <li className="product-list">
                     <a href={`/product/${el._id}`}>
-                        <div className="img-thumb">
+                        <div className="img-thumb clearfix">
                             <img className='thumb' src={`http://localhost:5000/${el.images[0]}`} alt='상품 이미지'/>
                             {  el.images.length >= 2 && <img className='hover-thumb' src={`http://localhost:5000/${el.images[1]}`} alt='상품 이미지'/> }
                         </div>
