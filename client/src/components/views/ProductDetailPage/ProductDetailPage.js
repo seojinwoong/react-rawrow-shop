@@ -81,7 +81,7 @@ function ProductDetailPage(props) {
             {/* product-content-wrap */}
             <div className="product-content-wrap">
                 {Product.images && Product.images.map((el, idx) => (
-                    <img key={idx} src={`http://localhost:5000/${el}`} alt="메인이미지2" className="intro-img mb20"/>
+                    <img key={idx} src={`http://localhost:5000/${el}`} alt="이미지" className="intro-img mb20"/>
                 ))}
             </div>
             {/* // product-content-wrap*/}

@@ -1,0 +1,6 @@
+.cart-page { } 
+.cart-page .cart-lists { border-top: 2px solid #111; border-bottom: 2px solid #111; } 
+.cart-page .cart-lists .no-data { text-align: center; margin: 50px 0; font-size: 20px; } 
+.cart-page .btn-wrap { text-align: right; margin-top: 50px; } 
+.cart-page .btn-wrap button { width: 200px; font-size: 20px; line-height: 37px; color: #fff; background: #000; cursor: pointer; }
+.cart-page .btn-wrap button:hover {text-decoration: underline;}

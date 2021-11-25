@@ -36,7 +36,7 @@ function LandingPage() {
         <div className="main-page-wrapper">
             <ul className="intro-list-wrap">
                 <li className="first-lists">
-                    <a href="/">
+                    <a href="/shop/3">
                         <img src={introImg1} alt="메인이미지1" className="intro-img"/>
                         <p className='clearfix'>
                             <span className="intro-title">THE NEW R WEAR</span>
@@ -48,7 +48,7 @@ function LandingPage() {
                     </a>
                 </li>
                 <li>
-                    <a href="/">
+                    <a href="/shop/2">
                         <img src={introImg2} alt="메인이미지2" className="intro-img"/>
                         <p className='clearfix'>
                             <span className="intro-title">R EYE</span>
@@ -60,7 +60,7 @@ function LandingPage() {
                     </a>
                 </li>
                 <li>
-                    <a href="/">
+                    <a href="/shop/1">
                         <img src={introImg3} alt="메인이미지3" className="intro-img"/>
                         <p className='clearfix'>
                             <span className="intro-title">STRING COLOR <br/>BLOCK</span>
@@ -72,7 +72,7 @@ function LandingPage() {
                     </a>
                 </li>
                 <li>
-                    <a href="/">
+                    <a href="/shop/1">
                         <img src={introImg4} alt="메인이미지4" className="intro-img"/>
                         <p className='clearfix'>
                             <span className="intro-title">CORDUROY SERIES</span>
@@ -84,7 +84,7 @@ function LandingPage() {
                     </a>
                 </li>
                 <li>
-                    <a href="/">
+                    <a href="/shop/3">
                         <img src={introImg5} alt="메인이미지5" className="intro-img"/>
                         <p className='clearfix'>
                             <span className="intro-title">RAW TRIP</span>
