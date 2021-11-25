@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import './Sections/ShopPage.css';
+import LoadingIcon from "../../utils/LoadingIcon";
 
 function ShopPage(props) {
   const [Category, setCategory] = useState(props.match.params.category);
@@ -8,7 +9,7 @@ function ShopPage(props) {
   const [Limit, setLimit] = useState(16);
   const [Skip, setSkip] = useState(0);
   const [PostSize, setPostSize] = useState(0);
-  const [PageLoad, setPageLoad] = useState(false);
+  const [PageLoad, setPageLoad] = useState(true);
 
   useEffect(() => {
     let body = {
@@ -16,20 +17,34 @@ function ShopPage(props) {
         limit: Limit,
         category: Category
     }
+
     getProducts(body);
   }, []);
 
+  const loadMoreItems = () => {
+    let newSkip = Skip + Limit;
+    let body = {
+      skip: newSkip,
+      limit: Limit,
+      category: Category,
+      isLoadMore: true
+    }
+    getProducts(body);
+    setSkip(newSkip);
+  }
+
   const getProducts = (body) => {
+    setPageLoad(true);
     axios.post('/api/product/products', body)
         .then(response => {
             if (response.data.success) {
                 if (body.isLoadMore) {
-                    setProductArray([...ProductArray, response.data.productInfo]);
+                    setProductArray([...ProductArray, ...response.data.productInfo]);
                 } else {
                     setProductArray(response.data.productInfo);
                 }
                 setPostSize(response.data.postSize);
-                setPageLoad(true);
+                setPageLoad(false);
             } else {
                 alert('상품들을 가져오는데 실패했습니다.');
             }
@@ -37,11 +52,15 @@ function ShopPage(props) {
   }
 
   return (
-    <div className={PageLoad ? "shop-page load" : "shop-page"}>
+    <div className="shop-page">
       <h2 className="page-title shop-title">
         {Category == 1 ? 'BAG' : Category == 2 ? 'EYE' : 'WEAR'}
       </h2>
       
+      {
+        ( PageLoad === false && ProductArray.length == 0 ) &&
+        <p className="no-data">상품이 존재하지 않습니다.</p>       
+      }
       <ul className="product-lists-wrap">
           {
               ProductArray.map((el, idx) => (
@@ -60,6 +79,11 @@ function ShopPage(props) {
               ))
           }
       </ul>
+      {
+        PostSize >= Limit &&
+        <p className="more-btn-wrap" onClick={loadMoreItems}>더보기</p>
+      }
+      {PageLoad && <LoadingIcon/>}
     </div>
   );
 }

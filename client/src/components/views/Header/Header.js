@@ -83,7 +83,7 @@ function Header(props) {
               user.userData && user.userData.isAuth
               ? ( 
                 <>
-                  <a className='menu-list' href="#">
+                  <a className='menu-list' href="/user/cart">
                     <i>CART</i>
                     <FontAwesomeIcon icon={faShoppingCart} className="mo-ico"/>
                   </a>

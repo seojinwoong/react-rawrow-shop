@@ -44,7 +44,7 @@ router.post('/products', (req, res) => {
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
     let category = req.body.category ? parseInt(req.body.category) : 1;
 
-    Product.find({})
+    Product.find({ category: category })
     .populate('writer')
     .skip(skip)
     .limit(limit)
@@ -52,8 +52,19 @@ router.post('/products', (req, res) => {
         if (err) return res.status(400).json({ success: false, err })
         return res.status(200).json({ success: true, productInfo, postSize: productInfo.length })
     })
+});
 
-})
+router.get('/products_by_id', (req, res) => {
+    let type = req.query.type;
+    let productId = req.query.id;
+
+    Product.find({ _id: productId })
+        .populate('writer')
+        .exec((err, product) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).send(product);
+        })
+});
 
 module.exports = router;
 

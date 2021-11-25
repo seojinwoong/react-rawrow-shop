@@ -1,5 +1,6 @@
 .show-if-layout-change { display:none; } 
-.product-detail-page { padding: 0 5%; } 
+.product-detail-page { padding: 0 5%; transition: opacity 0.3s; opacity:0;} 
+.product-detail-page.page-show {opacity:1;}
  
  .product-content-wrap { width: calc(100% - 500px); float: left; margin-right: 50px; } 
 
@@ -16,8 +17,10 @@
  .product-detail-wrap .order-box .buy-now:hover, 
  .product-detail-wrap .order-box .add-to-cart:hover { text-decoration: underline; } 
 
+ .product-detail-wrap .choice-size {border: 2px solid #111; width: 100%; margin: 10px 0;}
+
  .product-detail-wrap .p-comment-box .title-section { font-weight: bold; font-size: 18px; margin-bottom: 10px; } 
- .product-detail-wrap .p-comment-box .content-section { word-break: keep-all; font-size: 16px; margin-bottom: 30px; } 
+ .product-detail-wrap .p-comment-box .content-section { word-break: keep-all; font-size: 16px; margin-bottom: 30px; white-space:pre-line;} 
  .product-detail-wrap .p-comment-box .link-box { display: block; border: 3px solid #111; text-align: center; font-size: 22px; font-weight: bold; padding: 30px 0; } 
  .product-detail-wrap .p-comment-box .warranty-img { width: 100px; margin: 0 auto; } 
 
