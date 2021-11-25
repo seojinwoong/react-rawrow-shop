@@ -35,6 +35,12 @@ function Header(props) {
     })
   };
 
+  const checkSearchValue = () => {
+    if (SearchValue.trim() !== "") {
+      props.history(`/searchResult/${SearchValue}`);
+    }
+  };
+
   const location = useLocation();
 
   useEffect(() => {
@@ -126,7 +132,7 @@ function Header(props) {
         <section className={SearchBarActive ? 'search-bar-wrap active' : 'search-bar-wrap'}>
           <div className="search-form">
             <input type="text" placeholder="검색어를 입력하세요" onChange={searchTextHandler} value={SearchValue}/>
-            <FontAwesomeIcon icon={faSearch} className="search-submit"/>
+            <FontAwesomeIcon icon={faSearch} className="search-submit" onClick={checkSearchValue}/>
             <FontAwesomeIcon icon={faTimes} className="search-close" onClick={()=>{searchBarHandler(false)}}/>
           </div>
         </section>
