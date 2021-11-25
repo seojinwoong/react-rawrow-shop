@@ -2,25 +2,26 @@ import React, { useState, useEffect } from 'react';
 import './Sections/ProductDetailPage.css';
 import axios from 'axios';
 import { comma, uncomma } from '../../utils/utils.js';
+import LoadingIcon from '../../utils/LoadingIcon';
 
 // fontawesome Icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import quality_program from '../../../img/quality_program.jpg';
 
 function ProductDetailPage(props) {
     const productId = props.match.params.productId;
     const [Product, setProduct] = useState({}); 
-    const [PageLoad, setPageLoad] = useState(false);
+    const [PageLoad, setPageLoad] = useState(true);
     let [BuyingProducts, setBuyingProducts] = useState([]);
 
     useEffect(() => {
-        setPageLoad(false);
+        setPageLoad(true);
         axios.get(`/api/product/products_by_id?id=${productId}&type=single`)
             .then(response => {
                 setProduct(response.data[0]);
-                setPageLoad(true);
+                setPageLoad(false);
             })
 
             .catch(err => {
@@ -76,8 +77,18 @@ function ProductDetailPage(props) {
         }
     }
 
+    const removeItems = (selectValue) => {
+        const targetIdx = BuyingProducts.findIndex(item => item.size === selectValue);
+        const copy = [...BuyingProducts];
+        if (targetIdx !== -1) {
+            copy.splice(targetIdx, 1);
+            setBuyingProducts(copy);
+        }
+    };
+
+
     return (
-        <div className={`product-detail-page clearfix ${PageLoad && 'page-show'}`}>
+        <div className={'product-detail-page clearfix'}>
             {/* product-content-wrap */}
             <div className="product-content-wrap">
                 {Product.images && Product.images.map((el, idx) => (
@@ -111,11 +122,11 @@ function ProductDetailPage(props) {
                         && 
                         BuyingProducts.map((buyingPrducts) => (
                             <tr key={buyingPrducts.size}>
-                                <td style={{width: '55%'}}>{Product.title} - <span className="main-c">{buyingPrducts.size} SIZE</span></td>
+                                <td style={{width: '40%'}}>{Product.title} - <span className="main-c">{buyingPrducts.size} SIZE</span></td>
                                 <td style={{width: '20%'}}>
-                                    <span className="btns" onClick={(e)=>{buyProductHandler(e, buyingPrducts.size, 'minus')}}><FontAwesomeIcon icon={faMinus}/></span>
+                                    <span className="btns" onClick={(e)=>{buyProductHandler(e, buyingPrducts.size, 'minus')}}><FontAwesomeIcon icon={faMinus} className='icons'/></span>
                                     <input className="btns" type="number" value={buyingPrducts.amount} onChange={(e)=>{buyProductHandler(e, buyingPrducts.size, 'inputs')}} min="1"/>
-                                    <span className="btns" onClick={(e)=>{buyProductHandler(e, buyingPrducts.size, 'plus')}}><FontAwesomeIcon icon={faPlus}/></span>
+                                    <span className="btns" onClick={(e)=>{buyProductHandler(e, buyingPrducts.size, 'plus')}}><FontAwesomeIcon icon={faPlus} className='icons'/></span>
                                 </td>
                                 <td>
                                     <p>{comma(uncomma(Product.price) * buyingPrducts.amount)}원</p>
@@ -124,6 +135,9 @@ function ProductDetailPage(props) {
                                         {comma(uncomma(Product.price) * 0.05 * buyingPrducts.amount)}
                                         마일리지)
                                     </p>
+                                </td>
+                                <td>
+                                    <span className="btns" onClick={()=>{removeItems(buyingPrducts.size)}}><FontAwesomeIcon icon={faTimes} className='icons'/></span>
                                 </td>
                             </tr>
                         ))
@@ -158,7 +172,7 @@ function ProductDetailPage(props) {
                 </section>
             </div>
             {/* // product-detail-wrap */}
-
+            {PageLoad && <LoadingIcon/>}
         </div>
     )
 }

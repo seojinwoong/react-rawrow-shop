@@ -1,6 +1,5 @@
 .show-if-layout-change { display:none; } 
-.product-detail-page { padding: 0 5%; transition: opacity 0.3s; opacity:0;} 
-.product-detail-page.page-show {opacity:1;}
+.product-detail-page { padding: 0 5%;} 
  
  .product-content-wrap { width: calc(100% - 500px); float: left; margin-right: 50px; } 
 
@@ -10,28 +9,29 @@
  .product-detail-wrap .order-box .price-wrap .mileage { font-weight: bold; font-size: 22px; display: block; } 
  .product-detail-wrap .order-box .order-table { margin: 20px 0; border-collapse: collapse; } 
  .product-detail-wrap .order-box .order-table td { font-weight: bold; font-size: 14px; word-break: break-word; } 
- .product-detail-wrap .order-box .order-table td .btns { font-size:12px; font-weight: bold; border: 2px solid #111; width: 22px; height: 22px; display: inline-block; vertical-align: middle; text-align: center; margin-left: -2px; line-height: 22px; cursor: pointer; } 
+ .product-detail-wrap .order-box .order-table td .btns { position:relative; font-size:12px; font-weight: bold; border: 2px solid #111; width: 22px; height: 22px; display: inline-block; vertical-align: middle; text-align: center; margin-left: -2px; line-height: 22px; cursor: pointer; } 
+ .product-detail-wrap .order-box .order-table td .btns .icons { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); } 
  .product-detail-wrap .order-box .total-price { margin: 30px 0 50px; font-weight: bold; font-size: 27px; letter-spacing: -1px; } 
  .product-detail-wrap .order-box .buy-now { width: 100%; background: #111; color: #fff; font-size: 24px; font-weight: bold; padding: 5px 0; cursor: pointer; border: 3px solid #111; margin-bottom: 10px; } 
  .product-detail-wrap .order-box .add-to-cart { width: 100%; background: #fff; color: #111; font-size: 24px; font-weight: bold; padding: 5px 0; cursor: pointer; margin-bottom: 10px; border: 3px solid #111; } 
  .product-detail-wrap .order-box .buy-now:hover, 
  .product-detail-wrap .order-box .add-to-cart:hover { text-decoration: underline; } 
 
- .product-detail-wrap .choice-size {border: 2px solid #111; width: 100%; margin: 10px 0;}
+ .product-detail-wrap .choice-size { border: 2px solid #111; width: 100%; margin: 10px 0; } 
 
  .product-detail-wrap .p-comment-box .title-section { font-weight: bold; font-size: 18px; margin-bottom: 10px; } 
- .product-detail-wrap .p-comment-box .content-section { word-break: keep-all; font-size: 16px; margin-bottom: 30px; white-space:pre-line;} 
+ .product-detail-wrap .p-comment-box .content-section { word-break: keep-all; font-size: 16px; margin-bottom: 30px; white-space:pre-line; } 
  .product-detail-wrap .p-comment-box .link-box { display: block; border: 3px solid #111; text-align: center; font-size: 22px; font-weight: bold; padding: 30px 0; } 
  .product-detail-wrap .p-comment-box .warranty-img { width: 100px; margin: 0 auto; } 
 
  @media (max-width:1200px){
- .show-if-layout-change { display:block; margin-bottom:50px;} 
+ .show-if-layout-change { display:block; margin-bottom:50px; } 
 
- .product-detail-page { display: flex; flex-direction: column-reverse; padding:0 20px;} 
- .product-detail-wrap {float:none; width: 100%; position: relative; top:0; height:auto; border-bottom: 5px solid #111; padding: 0 0 50px;}
- .product-content-wrap {float:none; width:100%; margin-right:0; margin-top:50px;}
- .product-detail-wrap .order-box .order-table td {text-align: center;}
-}
- @media (max-width:700px) {
-     .show-if-layout-change { display:block; margin-bottom:30px;} 
-  }
+ .product-detail-page { display: flex; flex-direction: column-reverse; padding:0 20px; } 
+ .product-detail-wrap { float:none; width: 100%; position: relative; top:0; height:auto; border-bottom: 5px solid #111; padding: 0 0 50px; } 
+ .product-content-wrap { float:none; width:100%; margin-right:0; margin-top:50px; } 
+ .product-detail-wrap .order-box .order-table td { text-align: center; } 
+ }
+ @media (max-width:700px){
+ .show-if-layout-change { display:block; margin-bottom:30px; } 
+ }
