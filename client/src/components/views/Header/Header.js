@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Sections/Header.css";
+import { withRouter } from "react-router-dom";
 import EventTopRolling from "./Sections/EventTopRolling";
 import { useLocation } from "react-router-dom";
 import LogoImg from '../../../img/logo.png';
@@ -20,7 +21,9 @@ function Header(props) {
   const [WaitAndShow, setWaitAndShow] = useState(false);
 
   const menuHandler = () => {setMenuActive(!MenuActive);}
-  const searchTextHandler = (e) => {setSearchValue(e.target.value)}
+  const searchTextHandler = (e) => {
+    setSearchValue(e.target.value);
+  }
   const searchBarHandler = (value) => {
     setSearchBarActive(value);
     if (!value) setSearchValue('');
@@ -37,9 +40,12 @@ function Header(props) {
 
   const checkSearchValue = () => {
     if (SearchValue.trim() !== "") {
-      props.history(`/searchResult/${SearchValue}`);
+      props.history.push(`/searchResult/${SearchValue}`);
+      searchBarHandler(false);
     }
   };
+
+  const keyPressFn = (e) => { if (e.key === 'Enter') checkSearchValue(); } // Enter key 눌렀을때 submit 이벤트
 
   const location = useLocation();
 
@@ -131,7 +137,11 @@ function Header(props) {
       {/* search-bar-wrap */}
         <section className={SearchBarActive ? 'search-bar-wrap active' : 'search-bar-wrap'}>
           <div className="search-form">
-            <input type="text" placeholder="검색어를 입력하세요" onChange={searchTextHandler} value={SearchValue}/>
+            <input type="text" 
+            placeholder="검색어를 입력하세요" 
+            onChange={searchTextHandler} 
+            onKeyPress={keyPressFn} 
+            value={SearchValue}/>
             <FontAwesomeIcon icon={faSearch} className="search-submit" onClick={checkSearchValue}/>
             <FontAwesomeIcon icon={faTimes} className="search-close" onClick={()=>{searchBarHandler(false)}}/>
           </div>
@@ -143,4 +153,4 @@ function Header(props) {
   );
 }
 
-export default Header;
+export default withRouter(Header);

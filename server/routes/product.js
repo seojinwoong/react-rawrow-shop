@@ -43,15 +43,27 @@ router.post('/products', (req, res) => {
     let limit = req.body.limit ? parseInt(req.body.limit) : 16;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
     let category = req.body.category ? parseInt(req.body.category) : 1;
+    let searchTerm = req.body.searchTerm;
 
-    Product.find({ category: category })
-    .populate('writer')
-    .skip(skip)
-    .limit(limit)
-    .exec((err, productInfo) => {
-        if (err) return res.status(400).json({ success: false, err })
-        return res.status(200).json({ success: true, productInfo, postSize: productInfo.length })
-    })
+    if (searchTerm) {
+        Product.find({ "title": {'$regex': searchTerm, '$options': 'i'} })
+        .populate('writer')
+        .skip(skip)
+        .limit(limit)
+        .exec((err, productInfo) => {
+            if (err) return res.status(400).json({ success: false, err })
+            return res.status(200).json({ success: true, productInfo, postSize: productInfo.length })
+        })
+    } else {
+        Product.find({ category: category })
+        .populate('writer')
+        .skip(skip)
+        .limit(limit)
+        .exec((err, productInfo) => {
+            if (err) return res.status(400).json({ success: false, err })
+            return res.status(200).json({ success: true, productInfo, postSize: productInfo.length })
+        })
+    }
 });
 
 router.get('/products_by_id', (req, res) => {

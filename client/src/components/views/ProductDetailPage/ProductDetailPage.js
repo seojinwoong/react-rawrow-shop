@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import './Sections/ProductDetailPage.css';
+import quality_program from '../../../img/quality_program.jpg';
+import LoadingIcon from '../../utils/LoadingIcon';
 import axios from 'axios';
 import { comma, uncomma } from '../../utils/utils.js';
-import LoadingIcon from '../../utils/LoadingIcon';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart } from '../../../_actions/user_actions';
 
 // fontawesome Icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import quality_program from '../../../img/quality_program.jpg';
-
 function ProductDetailPage(props) {
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
     const productId = props.match.params.productId;
     const [Product, setProduct] = useState({}); 
     const [PageLoad, setPageLoad] = useState(true);
@@ -86,6 +90,26 @@ function ProductDetailPage(props) {
         }
     };
 
+    const addToCartHandler = () => {
+        if (!(user.userData && user.userData.isAuth)) {
+            alert('로그인해주세요');
+            props.history.push('/login');
+        } else {
+            if (!BuyingProducts.length) return alert('사이즈 선택을 먼저해주세요.');
+            let dataToSubmit = {
+                productId: productId,
+                sizes: BuyingProducts
+            };
+            dispatch(addToCart(dataToSubmit)).then(response => {
+                if (response.payload.success) {
+                    console.log('성공');
+                } else {
+                    alert('상품을 장바구니에 담는 과정 중에 오류가 발생하였습니다');
+                    // console.log('오류내용', response.payload.err.errmsg);
+                }
+            });
+        }
+    }
 
     return (
         <div className={'product-detail-page clearfix'}>
@@ -145,7 +169,7 @@ function ProductDetailPage(props) {
                     </table>
                     <p className="total-price">총 상품금액 : {totalPrice()} 원</p>
                     <button className="buy-now">BUY NOW</button>
-                    <button className="add-to-cart">ADD TO CART</button>
+                    <button className="add-to-cart" onClick={addToCartHandler}>ADD TO CART</button>
                 </section>
 
                 <section className="p-comment-box">

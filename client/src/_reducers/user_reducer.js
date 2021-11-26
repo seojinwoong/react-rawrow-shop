@@ -5,7 +5,8 @@ import {
     LOGOUT_USER,
     CHECK_ID,
     FIND_MEMBER_INFO,
-    CHANGE_PWD
+    CHANGE_PWD,
+    ADD_TO_CART
 } from '../_actions/types';
  
 
@@ -25,6 +26,14 @@ export default function(state={},action){
             return {...state, findResult: action.payload}
         case CHANGE_PWD:
             return {...state }
+        case ADD_TO_CART:
+            return {
+                ...state, 
+                userData: {
+                    ...state.userData,
+                    cart: action.payload
+                }
+            }
         default:
             return state;
     }

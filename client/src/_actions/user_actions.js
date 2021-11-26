@@ -6,7 +6,8 @@ import {
     LOGOUT_USER,
     CHECK_ID,
     FIND_MEMBER_INFO,
-    CHANGE_PWD
+    CHANGE_PWD,
+    ADD_TO_CART
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -76,6 +77,16 @@ export function changePwd(dataToSubmit){
 
     return {
         type: CHANGE_PWD,
+        payload: request
+    }
+}
+
+export function addToCart(dataToSubmit){
+    const request = axios.post(`${USER_SERVER}/addToCart`, dataToSubmit)
+    .then(response => response.data);
+
+    return {
+        type: ADD_TO_CART,
         payload: request
     }
 }

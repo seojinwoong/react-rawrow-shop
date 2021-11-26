@@ -128,4 +128,45 @@ router.post("/findMemberIndo", (req, res) => {
   })
 });
 
+
+router.post("/addToCart", auth, (req, res) => {
+  // 먼저, User collection에 해당 유저의 정보를 다 가져오기
+
+  // req.body.productId; // 상품고유아이디
+  // req.body.size; // 구매하려는 사이즈와 그 수량
+
+  User.findOne({ _id: req.user._id }, 
+      (err, userInfo) => {
+          // 가져온 정보에서 카트에다 넣으려는 상품이 이미 들어 있는지 확인
+          let flag = false;
+          userInfo.cart.forEach((item) => {
+              if(item.id === req.body.productId) {
+                  flag = true;
+              }
+          });
+          if (flag) {
+            let results = [...req.body.sizes];
+            console.log('asd', results);
+          } else {
+            User.findOneAndUpdate(
+              { _id: req.user._id },
+              {
+                $push: {
+                  cart: {
+                    id: req.body.productId,
+                    sizes: req.body.sizes,
+                    date: Date.now()
+                  }
+                }
+              },
+              { new: true },
+              (err, userInfo) => {
+                if (err) return res.status(400).json({ sucess: false, err })
+                return res.status(200).send(userInfo.cart)
+              }
+            )
+          }
+      })    
+});
+
 module.exports = router;

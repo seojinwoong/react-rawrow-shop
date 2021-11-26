@@ -1,18 +1,40 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import './Sections/ShopPage.css';
 import LoadingIcon from "../../utils/LoadingIcon";
+import './Sections/SearchResultPage.css';
+
+// fontawesome Icon
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 function SearchResultPage(props) {
-  const [SearchText, setSearchText] = useState(props.match.params.searchText);
+  const SearchText = props.match.params.searchText;
   const [ProductArray, setProductArray] = useState([]);
+  const [Limit, setLimit] = useState(16);
+  const [Skip, setSkip] = useState(0);
+  const [PostSize, setPostSize] = useState(0);
+  const [PageLoad, setPageLoad] = useState(true);
 
   useEffect(() => {
     let body = {
+      skip: Skip,
+      limit: Limit,
+      searchTerm: SearchText
     }
-
     getProducts(body);
-  }, []);
+  }, [props.match.params.searchText]);
+
+  const loadMoreItems = () => {
+    let newSkip = Skip + Limit;
+    let body = {
+      skip: newSkip,
+      limit: Limit,
+      searchTerm: SearchText,
+      isLoadMore: true
+    }
+    getProducts(body);
+    setSkip(newSkip);
+  }
 
   const getProducts = (body) => {
     setPageLoad(true);
@@ -24,7 +46,6 @@ function SearchResultPage(props) {
                 } else {
                     setProductArray(response.data.productInfo);
                 }
-                setPostSize(response.data.postSize);
                 setPageLoad(false);
             } else {
                 alert('상품들을 가져오는데 실패했습니다.');
@@ -32,14 +53,27 @@ function SearchResultPage(props) {
         })
   }
 
+  const markingText = (text) => {
+    let wordArray = text.split(" ");
+    let returnHTML = '';
+    for (let key in wordArray) {
+      if (wordArray[key].toLowerCase() === SearchText.toLowerCase()) returnHTML += "<span>" + wordArray[key] + "</span> ";
+      else returnHTML += wordArray[key] + " ";
+    }
+    return <b className='find-words' dangerouslySetInnerHTML={{ __html: returnHTML }}></b>
+  }
+
   return (
     <div className="search-result-page">
       <h2 className="page-title result-title">검색결과</h2>
-      <h3 className="search-value">검색내용 : {SearchText}</h3>
+      <h3 className="search-value mb20">검색내용 : {SearchText}</h3>
 
-      {/* {
+      {
         ( PageLoad === false && ProductArray.length == 0 ) &&
-        <p className="no-data">상품이 존재하지 않습니다.</p>       
+        <p className="no-data-wrap">
+          <FontAwesomeIcon icon={faExclamationTriangle} className='notify-ico'/>
+          <span className="no-data">검색결과가 없습니다.</span>       
+        </p>
       }
       <ul className="product-lists-wrap">
           {
@@ -51,7 +85,7 @@ function SearchResultPage(props) {
                             {  el.images.length >= 2 && <img className='hover-thumb' src={`http://localhost:5000/${el.images[1]}`} alt='상품 이미지'/> }
                         </div>
                         <div className="product-cont">
-                            <p className="p-name">{el.title}</p>
+                            <p className="p-name">{markingText(el.title)}</p>
                             <p className='p-price'>{el.price}원</p>
                         </div>
                     </a>
@@ -59,11 +93,12 @@ function SearchResultPage(props) {
               ))
           }
       </ul>
-      {
+     
+       {
         PostSize >= Limit &&
         <p className="more-btn-wrap" onClick={loadMoreItems}>더보기</p>
       }
-      {PageLoad && <LoadingIcon/>} */}
+      {PageLoad && <LoadingIcon/>}
     </div>
   );
 }
