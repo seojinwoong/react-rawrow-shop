@@ -146,7 +146,13 @@ router.post("/addToCart", auth, (req, res) => {
           });
           if (flag) {
             let results = [...req.body.sizes];
-            console.log('asd', results);
+            console.log('results', results);
+            let newArray = [];
+            userInfo.cart.forEach((item, index) => {
+              results.map((element, idx) => {
+                console.log('ghgh', element.size);
+              })
+            });
           } else {
             User.findOneAndUpdate(
               { _id: req.user._id },
