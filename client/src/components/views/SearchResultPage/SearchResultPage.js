@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import LoadingIcon from "../../utils/LoadingIcon";
 import './Sections/SearchResultPage.css';
+import { Link } from 'react-router-dom';
 
 // fontawesome Icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -79,7 +80,7 @@ function SearchResultPage(props) {
           {
               ProductArray.map((el, idx) => (
                 <li className="product-list">
-                    <a href={`/product/${el._id}`}>
+                    <Link to={`/product/${el._id}`}>
                         <div className="img-thumb clearfix">
                             <img className='thumb' src={`http://localhost:5000/${el.images[0]}`} alt='상품 이미지'/>
                             {  el.images.length >= 2 && <img className='hover-thumb' src={`http://localhost:5000/${el.images[1]}`} alt='상품 이미지'/> }
@@ -88,7 +89,7 @@ function SearchResultPage(props) {
                             <p className="p-name">{markingText(el.title)}</p>
                             <p className='p-price'>{el.price}원</p>
                         </div>
-                    </a>
+                    </Link>
                 </li>
               ))
           }

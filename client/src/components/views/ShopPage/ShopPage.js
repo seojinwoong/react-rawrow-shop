@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import './Sections/ShopPage.css';
 import LoadingIcon from "../../utils/LoadingIcon";
+import { Link } from 'react-router-dom';
 
 function ShopPage(props) {
   const [Category, setCategory] = useState(props.match.params.category);
@@ -65,7 +66,7 @@ function ShopPage(props) {
           {
               ProductArray.map((el, idx) => (
                 <li className="product-list">
-                    <a href={`/product/${el._id}`}>
+                    <Link to={`/product/${el._id}`}>
                         <div className="img-thumb clearfix">
                             <img className='thumb' src={`http://localhost:5000/${el.images[0]}`} alt='상품 이미지'/>
                             {  el.images.length >= 2 && <img className='hover-thumb' src={`http://localhost:5000/${el.images[1]}`} alt='상품 이미지'/> }
@@ -74,7 +75,7 @@ function ShopPage(props) {
                             <p className="p-name">{el.title}</p>
                             <p className='p-price'>{el.price}원</p>
                         </div>
-                    </a>
+                    </Link>
                 </li>
               ))
           }

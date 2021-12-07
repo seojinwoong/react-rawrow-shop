@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 function IdResultPage() {
     const userId = useSelector(state => state.user.findResult.user.userId);
@@ -11,8 +12,8 @@ function IdResultPage() {
             </p>
             
             <div className='go-link-wrap'>
-                <a href="/login" className='go-link-page'>로그인하러 가기</a>
-                <a href="/"  className='go-link-page'>메인으로</a>
+                <Link to="/login" className='go-link-page'>로그인하러 가기</Link>
+                <Link to="/"  className='go-link-page'>메인으로</Link>
             </div>
         </>
     )

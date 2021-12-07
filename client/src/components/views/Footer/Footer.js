@@ -4,6 +4,7 @@ import snsFacebook from '../../../img/i_facebook.png';
 import snsInstagram from '../../../img/i_instagram.png';
 import snsKakao from '../../../img/i_kakao.png';
 import './Sections/Footer.css';
+import { Link } from 'react-router-dom'
 
 // fontawesome Icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,13 +17,13 @@ function Footer() {
     return (
         <div id="footerWrapper" className="footer-wrapper clearfix">
             <ul className="menu-lists sections">
-                <li><a href="/">ABOUT</a></li>
-                <li><a href="/">POLICY</a></li>
-                <li><a href="/">GUIDE</a></li>
-                <li><a href="/">FAQ</a></li>
-                <li><a href="/">STOCKLIST</a></li>
-                <li><a href="/">LIFETIME WARRANTY</a></li>
-                <li><a href="/">HELP</a></li>
+                <li><Link to="/">ABOUT</Link></li>
+                <li><Link to="/">POLICY</Link></li>
+                <li><Link to="/">GUIDE</Link></li>
+                <li><Link to="/">FAQ</Link></li>
+                <li><Link to="/">STOCKLIST</Link></li>
+                <li><Link to="/">LIFETIME WARRANTY</Link></li>
+                <li><Link to="/">HELP</Link></li>
             </ul>
 
             <article className="customer-center-info sections">
@@ -56,10 +57,10 @@ function Footer() {
                     RESERVED.<br/>
                 </p>
                 <article className="sns-section mt20">
-                    <a href="/"><img src={snsKakao} alt="로우로우 카카오"/></a>
-                    <a href="/"><img src={snsInstagram} alt="로우로우 인스타그램"/></a>
-                    <a href="/"><img src={snsFacebook} alt="로우로우 페이스북"/></a>
-                    <a href="/"><img src={snsNaver} alt="로우로우 네이버"/></a>
+                    <Link to="/"><img src={snsKakao} alt="로우로우 카카오"/></Link>
+                    <Link to="/"><img src={snsInstagram} alt="로우로우 인스타그램"/></Link>
+                    <Link to="/"><img src={snsFacebook} alt="로우로우 페이스북"/></Link>
+                    <Link to="/"><img src={snsNaver} alt="로우로우 네이버"/></Link>
                 </article>
             </article>
             <span className="go-top-btn" onClick={topScrollHandler}>

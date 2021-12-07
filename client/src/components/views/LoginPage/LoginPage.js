@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { loginUser } from "../../../_actions/user_actions";
 import { useDispatch } from "react-redux";
 import './Sections/LoginPage.css';
+import { Link } from 'react-router-dom';
 
 function LoginPage(props) {
   const dispatch = useDispatch();
@@ -49,9 +50,9 @@ function LoginPage(props) {
       </form>
 
       <div className="link-wrapper">
-        <a href="/findUserInfo/findId">아이디 찾기</a>
-        <a href="/findUserInfo/findPwd">비밀번호 찾기</a>
-        <a href="/register">회원가입</a>
+        <Link to="/findUserInfo/findId">아이디 찾기</Link>
+        <Link to="/findUserInfo/findPwd">비밀번호 찾기</Link>
+        <Link to="/register">회원가입</Link>
       </div>
     </div>
   );

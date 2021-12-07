@@ -4,6 +4,7 @@ import quality_program from '../../../img/quality_program.jpg';
 import LoadingIcon from '../../utils/LoadingIcon';
 import axios from 'axios';
 import { comma, uncomma } from '../../utils/utils.js';
+import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../../../_actions/user_actions';
@@ -178,20 +179,20 @@ function ProductDetailPage(props) {
                     <p className="title-section main-c">주의사항</p>
                     <p className="content-section">{Product.caution}</p>
 
-                    <a href="javascript:;" className="link-box mb20">
+                    <Link to="/" className="link-box mb20">
                         가입 시 바로 쓰는 마일리지 <br/>
                         1만원 <br/>
                         무엇을 사도 5% 적립
-                    </a>
-                    <a href="javascript:;" className="link-box mb20">
+                    </Link>
+                    <Link to="/" className="link-box mb20">
                         구매한 사람을 위하여 - <br/>
                         #전액환불 합니다.
-                    </a>
-                    <a href="javascript:;" className="link-box">
+                    </Link>
+                    <Link to="/" className="link-box">
                         <img src={quality_program} alt="일생 LIMITED LIFETIME WARRANTY" className="warranty-img mb10" />
                         끝까지 책입지는<br/>
                         평생 품질보증 프로그램
-                    </a>
+                    </Link>
                     
                 </section>
             </div>

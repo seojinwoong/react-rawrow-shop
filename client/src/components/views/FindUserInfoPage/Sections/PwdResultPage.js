@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { changePwd } from '../../../../_actions/user_actions';
+import { Link } from 'react-router-dom'
 
 function PwdResultPage() {
     const dispatch = useDispatch();
@@ -47,8 +48,8 @@ function PwdResultPage() {
                     </p>
                     
                     <div className='go-link-wrap'>
-                        <a href="/login" className='go-link-page'>로그인하러 가기</a>
-                        <a href="/"  className='go-link-page'>메인으로</a>
+                        <Link to="/login" className='go-link-page'>로그인하러 가기</Link>
+                        <Link to="/"  className='go-link-page'>메인으로</Link>
                     </div>
                 </>
                 )

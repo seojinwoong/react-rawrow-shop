@@ -5,6 +5,7 @@ import introImg2 from '../../../img/intro_page_02.jpg';
 import introImg3 from '../../../img/intro_page_03.jpg';
 import introImg4 from '../../../img/intro_page_04.jpg';
 import introImg5 from '../../../img/intro_page_05.jpg';
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
     const [ScrollY, setScrollY] = useState(0);
@@ -36,7 +37,7 @@ function LandingPage() {
         <div className="main-page-wrapper">
             <ul className="intro-list-wrap">
                 <li className="first-lists">
-                    <a href="/shop/3">
+                    <Link to="/shop/3">
                         <img src={introImg1} alt="메인이미지1" className="intro-img"/>
                         <p className='clearfix'>
                             <span className="intro-title">THE NEW R WEAR</span>
@@ -45,10 +46,10 @@ function LandingPage() {
                                 SHOP NOW
                             </span>
                         </p>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="/shop/2">
+                    <Link to="/shop/2">
                         <img src={introImg2} alt="메인이미지2" className="intro-img"/>
                         <p className='clearfix'>
                             <span className="intro-title">R EYE</span>
@@ -57,10 +58,10 @@ function LandingPage() {
                                 SHOP NOW
                             </span>
                         </p>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="/shop/1">
+                    <Link to="/shop/1">
                         <img src={introImg3} alt="메인이미지3" className="intro-img"/>
                         <p className='clearfix'>
                             <span className="intro-title">STRING COLOR <br/>BLOCK</span>
@@ -69,10 +70,10 @@ function LandingPage() {
                                 SHOP NOW
                             </span>
                         </p>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="/shop/1">
+                    <Link to="/shop/1">
                         <img src={introImg4} alt="메인이미지4" className="intro-img"/>
                         <p className='clearfix'>
                             <span className="intro-title">CORDUROY SERIES</span>
@@ -81,10 +82,10 @@ function LandingPage() {
                                 SHOP NOW
                             </span>
                         </p>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="/shop/3">
+                    <Link to="/shop/3">
                         <img src={introImg5} alt="메인이미지5" className="intro-img"/>
                         <p className='clearfix'>
                             <span className="intro-title">RAW TRIP</span>
@@ -93,7 +94,7 @@ function LandingPage() {
                                 SHOP NOW
                             </span>
                         </p>
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </div>

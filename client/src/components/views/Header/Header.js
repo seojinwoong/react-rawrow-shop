@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import LogoImg from '../../../img/logo.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../../_actions/user_actions';
+import { Link } from "react-router-dom";
 
 // fontawesome Icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -71,12 +72,12 @@ function Header(props) {
 
       {/* nav-bar */}
       <div className="nav-bar clearfix">
-        <h1 className="logo"><a href="/"><img src={LogoImg} alt="RAWROW 로고"/></a></h1>
+        <h1 className="logo"><Link to="/"><img src={LogoImg} alt="RAWROW 로고"/></Link></h1>
         
         <nav className={ MenuActive ? 'nav-menu active' : 'nav-menu' } >
-          <a href="/shop/1">BAG</a>
-          <a href="/shop/2">EYE</a>
-          <a href="/shop/3">WEAR</a>
+          <Link to="/shop/1">BAG</Link>
+          <Link to="/shop/2">EYE</Link>
+          <Link to="/shop/3">WEAR</Link>
         </nav>
 
         {
@@ -85,20 +86,20 @@ function Header(props) {
             {
               user.userData && user.userData.isAdmin 
               && (
-                  <a className='menu-list' href="/product/upload">
+                  <Link className='menu-list' to="/product/upload">
                     <i>상품업로드</i>
                     <FontAwesomeIcon icon={faShoppingBag} className="mo-ico"/>
-                  </a>
+                  </Link>
               )
             }
             {
               user.userData && user.userData.isAuth
               ? ( 
                 <>
-                  <a className='menu-list' href="/user/cart">
+                  <Link className='menu-list' to="/user/cart">
                     <i>CART</i>
                     <FontAwesomeIcon icon={faShoppingCart} className="mo-ico"/>
-                  </a>
+                  </Link>
                   <span className='menu-list' onClick={logoutHandler}>
                     <i>LOGOUT</i>
                     <FontAwesomeIcon icon={faSignOutAlt} className="mo-ico"/>
@@ -107,14 +108,14 @@ function Header(props) {
                 )
               : (
                 <>
-                  <a className='menu-list' href="/login">
+                  <Link className='menu-list' to="/login">
                     <i>LOGIN</i>
                     <FontAwesomeIcon icon={faUser} className="mo-ico"/>
-                  </a>
-                  <a className='menu-list' href="/register">
+                  </Link>
+                  <Link className='menu-list' to="/register">
                     <i>SIGNUP</i>
                     <FontAwesomeIcon icon={faUserPlus} className="mo-ico"/>
-                  </a>
+                  </Link>
                 </>
                 )
             }

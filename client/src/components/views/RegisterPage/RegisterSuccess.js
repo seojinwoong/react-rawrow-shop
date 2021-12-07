@@ -1,5 +1,6 @@
 import React from 'react';
 import './Sections/RegisterSuccess.css';
+import { Link } from 'react-router-dom';
 
 function RegisterSuccess() {
     return (
@@ -12,8 +13,8 @@ function RegisterSuccess() {
             </p>
 
             <p className='btn-wrapper'>
-                <a href="/" className='go-main'>메인으로</a>
-                <a href="/login" className='go-login'>로그인하기</a>
+                <Link to="/" className='go-main'>메인으로</Link>
+                <Link to="/login" className='go-login'>로그인하기</Link>
             </p>
             
         </div>
